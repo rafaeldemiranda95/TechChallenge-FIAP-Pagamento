@@ -31,6 +31,11 @@
 | --------------------------------------------------- | ------ | ---------------------------------------------------------------------------------------------- |
 | `localhost:3000/pagamento`                          | POST   | `{"valor": number,"tipo": string,"status": string,"idPedido": number,"idCliente": number}`     |
 
+## Para rodar a aplicação
+
+`docker build -t nome_da_imagem .
+docker run -d -p 8080:80 nome_da_imagem`
+
 ## SAGA
 
 ### SAGA Coreografado
