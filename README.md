@@ -62,3 +62,7 @@ A escolha entre o padrão Saga Coreografado e o padrão Saga Orquestrado depende
 #### Conclusão
 
 Embora o padrão Saga Coreografado traga seus próprios desafios, como a complexidade na rastreabilidade de eventos e na garantia de consistência eventual, esses aspectos são gerenciáveis com as ferramentas e práticas adequadas. Para o sistema de pedidos de uma lanchonete, a escolha pelo padrão coreografado alinha-se bem com a necessidade de flexibilidade, escalabilidade, desacoplamento e resiliência, tornando-o uma escolha sólida em detrimento do padrão Saga Orquestrado.
+
+## Relatório de Impacto à Proteção de Dados Pessoais
+
+[Relatório](https://drive.google.com/uc?export=view&id=14vAUg2BwMjlShrcaNXxjP6XqJlI3Vlao)
