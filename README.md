@@ -29,7 +29,7 @@
 
 | Endpoint                                            | Método | Parâmetros                                                                                     |
 | --------------------------------------------------- | ------ | ---------------------------------------------------------------------------------------------- |
-| `localhost:3000/pagamento`                          | POST   | `{"valor": 50.30,"tipo": "pix","status": "aguardando pagamento","idPedido": 10,"idCliente": 3}`|
+| `localhost:3000/pagamento`                          | POST   | `{"valor": number,"tipo": string,"status": string,"idPedido": number,"idCliente": number}`     |
 
 ## SAGA
 
