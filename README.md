@@ -1,73 +1,71 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
-</p>
+# Pós Tech - Software Architecture
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+## TechChallenge
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+### TURMA 2SOAT
 
-## Description
+#### Grupo 21
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+349463 - Airton Patrocínio da Silva Junior  
+349308 - Rafael de Miranda
 
-## Installation
+### Links:
 
-```bash
-$ npm install
+[Miro](https://miro.com/app/board/uXjVMGvVfHc=/)  
+[Serviço Pedidos](https://github.com/rafaeldemiranda95/TechChallenge-FIAP-Pedido)  
+[Serviço Pagamento](https://github.com/rafaeldemiranda95/TechChallenge-FIAP-Pagamento)  
+[Serviço Produção](https://github.com/rafaeldemiranda95/TechChallenge-FIAP-Producao)
+
+## DER
+
+### Pedido
+![DER Pedido](https://drive.google.com/uc?export=view&id=1VOiPoPBS4KlVW23kBxQvHUFMTQJipVcO)
+### Pagamento
+![DER Pagamento](https://drive.google.com/uc?export=view&id=1LgIFuB2nzXEp11W0HDIVZjNkvypaC26U)
+### Produção
+![DER Produção](https://drive.google.com/uc?export=view&id=1GDQLaGSrUdG3pPLw1DBA7dXA2wTbeYO5)
+
+### API
+
+| Endpoint                                            | Método | Parâmetros                                                                                     |
+| --------------------------------------------------- | ------ | ---------------------------------------------------------------------------------------------- |
+| `localhost:3000/pagamento`                          | POST   | `{"valor": number,"tipo": string,"status": string,"idPedido": number,"idCliente": number}`     |
+
+## Para rodar a aplicação
+
 ```
-
-## Running the app
-
-```bash
-# development
-$ npm run start
-
-# watch mode
-$ npm run start:dev
-
-# production mode
-$ npm run start:prod
+docker build -t nome_da_imagem .
+docker run -d -p 8080:80 nome_da_imagem
 ```
+## Desenho Microsserviços
 
-## Test
+![Desenho Microsserviços](https://drive.google.com/uc?export=view&id=1kpkSx7fKUpwQxz2KrMbBpGwjKObkULYR)
 
-```bash
-# unit tests
-$ npm run test
+## SAGA
 
-# e2e tests
-$ npm run test:e2e
+### SAGA Coreografado
 
-# test coverage
-$ npm run test:cov
-```
+![Saga coreografada](https://drive.google.com/uc?export=view&id=1RhAyyuoNi-uWRiJ6XWubc3Mjw0hjqhRW)
 
-## Support
+### Justificativa
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+A escolha entre o padrão Saga Coreografado e o padrão Saga Orquestrado depende de várias considerações sobre a natureza do sistema, a equipe de desenvolvimento, as preferências arquiteturais e as metas de escalabilidade e manutenção. Para o sistema de pedidos de uma lanchonete que envolve micro serviços de pedidos, pagamentos e produção, a opção pelo padrão Saga Coreografado pode ser justificada pelos seguintes motivos:
 
-## Stay in touch
+1. **Desacoplamento**  
+   **Justificativa:** O padrão coreografado promove um alto nível de desacoplamento entre os serviços, uma vez que não depende de um coordenador central para gerenciar as transações. Cada serviço é autônomo, responsável por publicar e consumir eventos independentemente. Isso é particularmente vantajoso em um ambiente onde os serviços têm responsabilidades claramente definidas, como montar pedidos, processar pagamentos e gerenciar a produção.
+2. **Flexibilidade e Evolutividade**  
+   **Justificativa:** À medida que o sistema evolui, novos serviços podem ser facilmente integrados à saga coreografada simplesmente assinando os eventos existentes ou emitindo novos. Isso facilita a adição de novos recursos, como serviços de notificação ou logística, sem a necessidade de reconfigurar um orquestrador central.
+3. **Escalabilidade**  
+   **Justificativa:** A abordagem coreografada permite que cada serviço escale independentemente com base em sua carga de trabalho específica, o que é ideal para um sistema de lanchonete que pode experimentar variações significativas na demanda. A ausência de um orquestrador central reduz o risco de gargalos e pontos de falha únicos.
+4. **Resiliência**  
+   **Justificativa:** Em um sistema coreografado, a falha de um serviço não paralisa o sistema inteiro, já que os serviços são desacoplados. Cada serviço pode implementar sua própria lógica de tratamento de erros e compensação, contribuindo para uma maior resiliência do sistema como um todo.
+5. **Simplificação de Desenvolvimento e Manutenção**  
+   **Justificativa:** Evitar a complexidade de manter um orquestrador central simplifica o desenvolvimento e a manutenção. Os desenvolvedores podem se concentrar na lógica de negócios de seus respectivos serviços sem se preocupar com a implementação e manutenção de um componente centralizado adicional. Isso pode acelerar o desenvolvimento e facilitar a manutenção a longo prazo.
 
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+#### Conclusão
 
-## License
+Embora o padrão Saga Coreografado traga seus próprios desafios, como a complexidade na rastreabilidade de eventos e na garantia de consistência eventual, esses aspectos são gerenciáveis com as ferramentas e práticas adequadas. Para o sistema de pedidos de uma lanchonete, a escolha pelo padrão coreografado alinha-se bem com a necessidade de flexibilidade, escalabilidade, desacoplamento e resiliência, tornando-o uma escolha sólida em detrimento do padrão Saga Orquestrado.
 
-Nest is [MIT licensed](LICENSE).
+## Relatório de Impacto à Proteção de Dados Pessoais
+
+[Relatório](https://drive.google.com/uc?export=view&id=14vAUg2BwMjlShrcaNXxjP6XqJlI3Vlao)
