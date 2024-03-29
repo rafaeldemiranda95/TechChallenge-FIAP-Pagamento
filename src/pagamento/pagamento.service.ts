@@ -7,16 +7,18 @@ import { CreatePagamentoDto } from './pagamento.dto';
 import { PedidoService } from 'src/pedido/pedido.service';
 import { CreatePedidoDto } from 'src/pedido/pedido.dto';
 import { PubSub } from '@google-cloud/pubsub';
+import { ConfigService } from '@nestjs/config';
 
 @Injectable()
 export class PagamentoService implements OnModuleInit {
   private pubSubClient: PubSub;
-  private subscriptionName = process.env.SUBSCRIPTION_PEDIDO_REALIZADO || 'subscription-pedido-realizado';
+  private subscriptionName = this.configService.get('SUBSCRIPTION_PEDIDO_REALIZADO');
 
   constructor(
     @InjectRepository(Pagamento)
     private pagamentoRepository: Repository<Pagamento>,
     private readonly pedidoService: PedidoService,
+    private configService: ConfigService,
   ) {
     this.pubSubClient = new PubSub({
         // opcional: especificar credenciais aqui
@@ -63,7 +65,7 @@ export class PagamentoService implements OnModuleInit {
   }
 
   private async publishPagamentoAprovado(pagamento: Pagamento) {
-    const topicName = process.env.TOPIC_APPROVED_PAYMENT; // Assegure-se de que esta variável de ambiente está configurada
+    const topicName = this.configService.get('TOPIC_APPROVED_PAYMENT');
     const dataBuffer = Buffer.from(JSON.stringify(pagamento));
 
     try {
@@ -77,7 +79,7 @@ export class PagamentoService implements OnModuleInit {
   }
 
   private async publishPagamentoNaoAutorizado(CreatePedidoDto: CreatePedidoDto) {
-    const topicName = process.env.TOPIC_PAYMENT_FAILED; // Assegure-se de que esta variável de ambiente está configurada
+    const topicName = this.configService.get('TOPIC_PAYMENT_FAILED');
     const dataBuffer = Buffer.from(JSON.stringify(CreatePedidoDto));
 
     try {
